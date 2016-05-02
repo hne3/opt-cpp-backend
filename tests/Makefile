@@ -1,52 +1,52 @@
-all-traces: basic.trace \
-						meng-thesis-example.trace \
-						array-overflow.trace \
-						array-param.trace \
-						struct-basic.trace \
-						globals.trace \
-						string-array.trace \
-						structs-and-arrays.trace \
-						pointer-chain.trace \
-						typedef-test.trace \
-						type-qualifiers.trace \
-						shadowing.trace \
-						pointers-gone-wild.trace \
-						number-types.trace \
-						fjalar-ArraysInStructTest.trace \
-						fjalar-ArrayTest.trace \
-						fjalar-CoercePointerTest.trace \
-						fjalar-crazy-test-1.trace \
-						fjalar-FloatTest.trace \
-						fjalar-function-pointer.trace \
-						fjalar-functions.trace \
-						fjalar-GlobalTest.trace \
-						fjalar-inline-func.trace \
-						fjalar-IntTest.trace \
-						fjalar-local-ptr.trace \
-						fjalar-MultiDimArrayTest.trace \
-						fjalar-NestedStructTest.trace \
-						fjalar-NestedStructVarList.trace \
-						fjalar-pointer-levels.trace \
-						fjalar-PointerTest.trace \
-						fjalar-small-test.trace \
-						fjalar-StaticArraysTest.trace \
-						fjalar-string-arrays.trace \
-						fjalar-StructPtrTest.trace \
-						fjalar-TrivialTest.trace \
-						fjalar-TypedefTest.trace \
-						cpp-array-struct-test.trace \
-						cpp-class-pointers.trace \
-						cpp-first.trace \
-						cpp-object-array.trace \
-						cpp-virtual-method.trace \
-						cpp-class-basic.trace \
-						cpp-consts.trace \
-						cpp-function-types.trace \
-						cpp-pass-by-ref.trace \
-						cpp-class-date.trace \
-						cpp-exception.trace \
-						cpp-inheritance.trace \
-						cpp-stack-inline.trace
+all-traces: basic.vgtrace \
+						meng-thesis-example.vgtrace \
+						array-overflow.vgtrace \
+						array-param.vgtrace \
+						struct-basic.vgtrace \
+						globals.vgtrace \
+						string-array.vgtrace \
+						structs-and-arrays.vgtrace \
+						pointer-chain.vgtrace \
+						typedef-test.vgtrace \
+						type-qualifiers.vgtrace \
+						shadowing.vgtrace \
+						pointers-gone-wild.vgtrace \
+						number-types.vgtrace \
+						fjalar-ArraysInStructTest.vgtrace \
+						fjalar-ArrayTest.vgtrace \
+						fjalar-CoercePointerTest.vgtrace \
+						fjalar-crazy-test-1.vgtrace \
+						fjalar-FloatTest.vgtrace \
+						fjalar-function-pointer.vgtrace \
+						fjalar-functions.vgtrace \
+						fjalar-GlobalTest.vgtrace \
+						fjalar-inline-func.vgtrace \
+						fjalar-IntTest.vgtrace \
+						fjalar-local-ptr.vgtrace \
+						fjalar-MultiDimArrayTest.vgtrace \
+						fjalar-NestedStructTest.vgtrace \
+						fjalar-NestedStructVarList.vgtrace \
+						fjalar-pointer-levels.vgtrace \
+						fjalar-PointerTest.vgtrace \
+						fjalar-small-test.vgtrace \
+						fjalar-StaticArraysTest.vgtrace \
+						fjalar-string-arrays.vgtrace \
+						fjalar-StructPtrTest.vgtrace \
+						fjalar-TrivialTest.vgtrace \
+						fjalar-TypedefTest.vgtrace \
+						cpp-array-struct-test.vgtrace \
+						cpp-class-pointers.vgtrace \
+						cpp-first.vgtrace \
+						cpp-object-array.vgtrace \
+						cpp-virtual-method.vgtrace \
+						cpp-class-basic.vgtrace \
+						cpp-consts.vgtrace \
+						cpp-function-types.vgtrace \
+						cpp-pass-by-ref.vgtrace \
+						cpp-class-date.vgtrace \
+						cpp-exception.vgtrace \
+						cpp-inheritance.vgtrace \
+						cpp-stack-inline.vgtrace
 
 
 #%: %.c
@@ -68,8 +68,8 @@ all-traces: basic.trace \
 	@g++ -ggdb -O0 -fno-omit-frame-pointer $< -o $(basename $@)
 	@../valgrind-3.11.0/inst/bin/valgrind --tool=memcheck --source-filename=$< --trace-filename=$(basename $<).vgtrace ./$(basename $<) || true
 
-%.trace: %.vgtrace ../vg_to_opt_trace.py
-	@python ../vg_to_opt_trace.py --create_jsvar=trace $(basename $<) > $(basename $<).trace || true
+#%.trace: %.vgtrace ../vg_to_opt_trace.py
+#	@python ../vg_to_opt_trace.py --create_jsvar=trace $(basename $<) > $(b#asename $<).trace || true
 
 clean:
 	rm -f *.trace *.vgtrace *.out
