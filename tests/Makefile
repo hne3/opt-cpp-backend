@@ -1,4 +1,5 @@
 all-traces: basic.vgtrace \
+						semaphore-test.vgtrace \
 						meng-thesis-example.vgtrace \
 						array-overflow.vgtrace \
 						array-param.vgtrace \
@@ -61,11 +62,11 @@ all-traces: basic.vgtrace \
 
 
 %.vgtrace: %.c ../valgrind-3.11.0/inst/bin/valgrind
-	@gcc -ggdb -O0 -fno-omit-frame-pointer $< -o $(basename $@)
+	@gcc -pthread -ggdb -O0 -fno-omit-frame-pointer $< -o $(basename $@)
 	@../valgrind-3.11.0/inst/bin/valgrind --tool=memcheck --source-filename=$< --trace-filename=$(basename $<).vgtrace ./$(basename $<) || true
 
 %.vgtrace: %.cpp ../valgrind-3.11.0/inst/bin/valgrind
-	@g++ -ggdb -O0 -fno-omit-frame-pointer $< -o $(basename $@)
+	@g++ -pthread -ggdb -O0 -fno-omit-frame-pointer $< -o $(basename $@)
 	@../valgrind-3.11.0/inst/bin/valgrind --tool=memcheck --source-filename=$< --trace-filename=$(basename $<).vgtrace ./$(basename $<) || true
 
 #%.trace: %.vgtrace ../vg_to_opt_trace.py
